@@ -1,0 +1,7 @@
+// re-used colors of the project
+$red: red;
+
+// to use them outside of scss  files
+:export {
+  red: $red;
+}
