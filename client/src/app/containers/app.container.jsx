@@ -13,30 +13,30 @@ import UsersList from '../components/login-components/users-list.component';
 // }
 
 const App = () => {
-    const [userChoice, setUserChoice] = useState(''); // to get the theme choose by the user
-    const [socket, setSocket] = useState(null);
+  const [userChoice, setUserChoice] = useState(''); // to get the theme choose by the user
+  const [socket, setSocket] = useState(null);
 
-    useEffect(() => {
-        //  -> use local server if custom config is needed
-        // const newSocket = io(`http://${window.location.hostname}:3000`);
-        const newSocket = io(`https://whispering-chamber-09886.herokuapp.com`);
-        setSocket(newSocket);
-        return () => newSocket.close();
-    }, [setSocket]);
+  useEffect(() => {
+    //  -> use local server if custom config is needed
+    // const newSocket = io(`http://${window.location.hostname}:3000`);
+    const newSocket = io(`https://whispering-chamber-09886.herokuapp.com`);
+    setSocket(newSocket);
+    return () => newSocket.close();
+  }, [setSocket]);
 
   return (
-      <div>
-          <LoginInput socket={socket}/>
-          { socket ? (
-              <div>
-                  <UsersList socket={socket}/>
-                  <MessagesList socket={socket} />
-                  <MessageInput socket={socket} />
-              </div>
-          ) : (
-              <div>You are not connected :( -> please try again</div>
-          )}
-      </div>
+    <div>
+      <LoginInput socket={socket}/>
+      {socket ? (
+        <div>
+          <UsersList socket={socket}/>
+          <MessagesList socket={socket}/>
+          <MessageInput socket={socket}/>
+        </div>
+      ) : (
+        <div>You are not connected :( -> please try again</div>
+      )}
+    </div>
   );
 };
 
