@@ -1,11 +1,25 @@
 import {useEffect, useState} from 'react';
+import {getFromLocalStorage} from '../../../utils/storage';
 
 const UsersList = ({socket}) => {
-  const [connectedUsers, setConnectedUsers] = useState({});
+  const [connectedUsers, setConnectedUsers] = useState([]);
+  const username = getFromLocalStorage('connectedUser');
 
   useEffect(() => {
     const usersListener = (users) => {
       setConnectedUsers(users)
+    };
+
+    const userConnectedListener = (user) => {
+      setConnectedUsers((prevUsers) => [...prevUsers, user])
+    }
+
+    const updateUsername = (newUser) => {
+      setConnectedUsers((prevUsers) => {
+        return prevUsers.map((user) => {
+          return user.id === newUser.id ? newUser : user;
+        })
+      })
     };
 
     const deleteUserListener = (userId) => {
@@ -16,8 +30,9 @@ const UsersList = ({socket}) => {
       });
     }
 
+    socket.on("userConnection", userConnectedListener);
+    socket.on("updateUsername", updateUsername);
     socket.on("users", usersListener);
-    // TODO -> get connexion socket.on("userConnection", addUserListener);
     socket.on("userDisconnection", deleteUserListener);
     socket.emit("getUsers");
 
@@ -29,7 +44,10 @@ const UsersList = ({socket}) => {
 
   return (
     <div>
-      {[...Object.values(connectedUsers)]
+      {
+        username.username !== "" && <h2>{username.username}</h2>
+      }
+      {connectedUsers
         .sort((a, b) => a.name - b.name)
         .map((user) => (
           <div key={user.id}><span>{user.name}</span><br/></div>

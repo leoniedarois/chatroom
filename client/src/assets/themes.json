@@ -1,0 +1,38 @@
+{
+  "data": {
+    "light": {
+      "id": "T_DEV",
+      "name": "developer",
+      "colors": {
+        "body": "#FFFFFF",
+        "text": "#000000",
+        "button": {
+          "text": "#FFFFFF",
+          "background": "#FF0000"
+        },
+        "link": {
+          "text": "teal",
+          "opacity": 1
+        }
+      },
+      "font": "Tinos"
+    },
+    "seaWave": {
+      "id": "T_DES",
+      "name": "designer",
+      "colors": {
+        "body": "#9be7ff",
+        "text": "#0d47a1",
+        "button": {
+          "text": "#ffffff",
+          "background": "#0d47a1"
+        },
+        "link": {
+          "text": "#0d47a1",
+          "opacity": 0.8
+        }
+      },
+      "font": "Ubuntu"
+    }
+  }
+}

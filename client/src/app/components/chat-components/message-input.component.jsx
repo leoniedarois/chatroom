@@ -1,20 +1,28 @@
 import {useState} from 'react';
 
-const MessageInput = ({socket}) => {
+const MessageInput = ({socket, onRead}) => {
   const [messageContent, setMessageContent] = useState('');
 
-  const submitForm = (e) => {
-    e.preventDefault();
-    socket.emit('message', messageContent);
-    setMessageContent('');
+  const submitForm = () => {
+    if (messageContent !== "") {
+      socket.emit('message', messageContent);
+      setMessageContent('');
+    }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      onRead();
+      submitForm();
+    }
+  }
   const changeMessage = (e) => setMessageContent(e.currentTarget.value);
 
   return (
-    <form onSubmit={submitForm}>
-      <input autoFocus value={messageContent} placeholder="Type something great" onChange={changeMessage}/>
-    </form>
+    <div>
+      <input autoFocus value={messageContent} placeholder="Type something great" onChange={changeMessage}
+             onKeyDown={handleKeyDown}/>
+    </div>
   );
 };
 

@@ -1,0 +1,67 @@
+@import '/src/assets/colors.module';
+.modal {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background: $blueDark;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.wrapper {
+  display: flex;
+}
+
+.wrapperRole {
+  position: relative;
+}
+
+.input {
+  padding: 20px;
+  background: none;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+  border-radius: 15px;
+  margin-top: 10vh;
+
+}
+
+.devChoice {
+  width: 180px;
+  height: 45vh;
+  background: $white;
+  border-radius: 100px;
+  position: relative;
+  margin-left: 13vw;
+}
+
+.desChoice {
+  width: 180px;
+  height: 45vh;
+  background: $yellow;
+  border-radius: 100px;
+  position: relative;
+  margin-right: 13vw;
+}
+
+.hide {
+  display: none;
+}
+
+.image {
+  width: 18vw;
+  position: absolute;
+  bottom: -15%;
+  right: 0;
+  left: 10%;
+}
+
+// move to commun
+.changeScale {
+  transform: scaleX(-1);
+  bottom: -20% !important;
+  right: 10% !important;
+  left: auto !important;
+}

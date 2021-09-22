@@ -1,7 +1,13 @@
 // re-used colors of the project
-$red: red;
+$blueLight: #3C5E9F;
+$blueDark: #2A467B;
+$yellow: #FFE7AB;
+$white: #C7D3FF;
+$blueText: #001447;
 
 // to use them outside of scss  files
 :export {
-  red: $red;
+  developer: $white;
+  designer: $yellow;
+  bluetext: $blueText;
 }
