@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import MessagesList from '../components/chat-components/messages-list.component';
+import MessagesList from '../components/chat-components/messages-list/messages-list.component';
 import MessageInput from '../components/chat-components/message-input.component';
 
 const Chat = ({socket}) => {
@@ -38,7 +38,7 @@ const Chat = ({socket}) => {
   }
   return (
     <>
-      <MessagesList messages={messages}/>
+      <MessagesList messages={messages} socket={socket}/>
       <MessageInput onRead={onRead} socket={socket}/>
     </>
   );
