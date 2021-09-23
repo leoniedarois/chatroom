@@ -23,37 +23,18 @@ export const GlobalStyles = createGlobalStyle`
     }
   }
   
+  .username {
+    color: ${({theme}) => theme.themeColor};
+    font-weight: bold;
+    font-style: italic;
+    font-size: 22px;
+    margin-bottom: 5px;
+  }
+  
   .userMessages {
     text-align: right;
     background: ${({theme}) => theme.messageBackground};
-    border-radius: 25px;
-    padding: 15px;
-    margin-bottom: 10px;
     float: right;
-  }
-
-  .devMessages {
-    color: #FFFFFF;
-    text-align: left;
-    background: rgba(255,255,255,0.06);
-    border: ${({theme}) => theme.themeColor} 2px solid;
-    border-radius: 25px;
-    padding: 15px;
-    max-width: 45%;
-    margin-bottom: 10px;
-    float: left;
-  }
-  
-  .desMessages {
-    color: #FFFFFF;
-    text-align: left;
-    background: rgba(255,255,255,0.06);
-    border: ${({theme}) => theme.themeColor} 2px solid;
-    border-radius: 25px;
-    padding: 15px;
-    max-width: 45%;
-    margin-bottom: 10px;
-    float: left;
   }
   
   .decoration {

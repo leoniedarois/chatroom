@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import styles from './users-list.module.scss';
 import DesAvatar from '../../../../assets/img/avatarDesFull.png';
 import DevAvatar from '../../../../assets/img/avatarDevFull.png';
+import {ROLES} from '../connexion-modal/connexion-modal.component';
 
 const UsersList = ({socket, currentUser}) => {
   const [connectedUsers, setConnectedUsers] = useState([]);
@@ -11,14 +12,14 @@ const UsersList = ({socket, currentUser}) => {
       const cleanUsers = users.map((user) => {
         return {
           ...user,
-          role: user.role !== ('developer' || 'designer') && 'developer'
+          role: user.role !== (ROLES.DEVELOPER || ROLES.DESIGNER) && ROLES.DEVELOPER
         }
       })
       setConnectedUsers(cleanUsers);
     };
 
     const userConnectedListener = (user) => {
-      const cleanUser = {...user, role: user.role !== ('developer' || 'designer') && 'developer'};
+      const cleanUser = {...user, role: user.role !== (ROLES.DEVELOPER || ROLES.DESIGNER) && ROLES.DEVELOPER};
       setConnectedUsers((prevUsers) => [...prevUsers, cleanUser]);
     }
 
@@ -65,11 +66,15 @@ const UsersList = ({socket, currentUser}) => {
       {connectedUsers
         .sort((a, b) => a.name - b.name)
         .map((user) => (
-          <div className={styles.avatar} key={user.id}>
-            <span className={styles.user}>{user.name}</span>
-            {user.role === "developer" ? <img src={DevAvatar} alt="avatar"/> : <img src={DesAvatar} alt="avatar"/>}
-            <br/>
-          </div>
+          <>
+            {user.name !== "" &&
+            <div className={styles.avatar} key={user.id}>
+              <span className={styles.user}>{user.name}</span>
+              {user.role === "developer" ? <img src={DevAvatar} alt="avatar"/> : <img src={DesAvatar} alt="avatar"/>}
+              <br/>
+            </div>
+            }
+          </>
         ))}
     </div>
   )

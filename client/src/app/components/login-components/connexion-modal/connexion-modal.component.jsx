@@ -1,5 +1,4 @@
 import {designerTheme, developerTheme} from '../../../../assets/themes';
-import {setToLocalStorage} from '../../../../utils/storage';
 import styles from '../connexion-modal/connexion-modal.module.scss';
 import RobotDes from '../../../../assets/img/robotDes.png';
 import RobotDev from '../../../../assets/img/robotDev.png';
@@ -8,11 +7,11 @@ import classNames from 'classnames';
 import {useState} from 'react';
 
 // define roles :)
-const ROLES = {DEVELOPER: "developer", DESIGNER: "designer"};
+export const ROLES = {DEVELOPER: "developer", DESIGNER: "designer"};
 
 const ConnexionModal = ({socket, setTheme, theme, setCurrentUser, currentUser}) => {
   const [username, setUsername] = useState("");
-  const [role, setRole] = useState("developer");
+  const [role, setRole] = useState(ROLES.DEVELOPER);
   const [hideModal, setHideModal] = useState(false);
   const [isActiveDev, setIsActiveDev] = useState(true);
   const [isActiveDes, setIsActiveDes] = useState(false);
@@ -58,9 +57,8 @@ const ConnexionModal = ({socket, setTheme, theme, setCurrentUser, currentUser}) 
   const changeUsername = (e) => setUsername(e.currentTarget.value);
 
   const addDeveloperRole = () => {
-    setToLocalStorage('role', ROLES.DEVELOPER);
     setTheme(developerTheme);
-    setRole('developer');
+    setRole(ROLES.DEVELOPER);
     if(isActiveDes) {
       setIsActiveDes(false);
       setIsActiveDev(true);
@@ -68,9 +66,8 @@ const ConnexionModal = ({socket, setTheme, theme, setCurrentUser, currentUser}) 
   };
 
   const addDesignerRole = () => {
-    setToLocalStorage('role', ROLES.DESIGNER);
     setTheme(designerTheme);
-    setRole('designer');
+    setRole(ROLES.DESIGNER);
     if(isActiveDev) {
       setIsActiveDev(false);
       setIsActiveDes(true);
@@ -115,15 +112,19 @@ const ConnexionModal = ({socket, setTheme, theme, setCurrentUser, currentUser}) 
       </>
 
       <div className={styles.wrapper}>
-        <div className={userActifDes} onClick={addDesignerRole}>
-          <p className={`${styles.role} ${styles.leftRole}`}>designer</p>
-          <div className={styles.desChoice}/>
-          <img src={RobotDes} alt="robot designer avatar" className={styles.image}/>
+        <div className={styles.blocked}>
+          <div className={userActifDes} onClick={addDesignerRole}>
+            <p className={`${styles.role} ${styles.leftRole}`}>designer</p>
+            <div className={styles.desChoice}/>
+            <img src={RobotDes} alt="robot designer avatar" className={styles.image}/>
+          </div>
         </div>
-        <div className={userActifDev} onClick={addDeveloperRole}>
-          <p className={`${styles.role} ${styles.rightRole}`}>developer</p>
-          <div className={styles.devChoice}>
-            <img src={RobotDev} alt="robot developer avatar" className={`${styles.changeScale} ${styles.image}`}/>
+        <div className={styles.blocked}>
+          <div className={userActifDev} onClick={addDeveloperRole}>
+            <p className={`${styles.role} ${styles.rightRole}`}>developer</p>
+            <div className={styles.devChoice}>
+              <img src={RobotDev} alt="robot developer avatar" className={`${styles.changeScale} ${styles.image}`}/>
+            </div>
           </div>
         </div>
       </div>

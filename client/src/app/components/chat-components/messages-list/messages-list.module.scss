@@ -1,6 +1,52 @@
+@import '/src/assets/colors.module';
+
 .messageList {
   position: relative;
   padding: 40px 0 40px 7vw;
   display: flex;
   flex-direction: column;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.time {
+  font-weight: 200 !important;
+  margin-left: 15px;
+  font-size: 14px;
+}
+
+.currentUsername {
+  text-align: right;
+}
+
+.message {
+  padding: 15px;
+  border-radius: 25px;
+  max-width: 45%;
+  margin-bottom: 10px;
+}
+
+.devMessages {
+  color: #FFFFFF;
+  background: rgba(255,255,255,0.06);
+  border: $white 2px solid;
+  float: left;
+}
+
+.desMessages {
+  color: #FFFFFF;
+  background: rgba(255,255,255,0.06);
+  border: $yellow 2px solid;
+  float: left;
+}
+
+.desName {
+  color: $yellow !important;
+}
+
+.devName {
+  color: $white !important;
 }

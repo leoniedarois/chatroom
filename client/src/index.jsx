@@ -4,7 +4,6 @@ import './index.scss';
 import App from './app/containers/app.container';
 import reportWebVitals from './reportWebVitals';
 
-
 ReactDOM.render(
   <React.StrictMode>
     <App/>
