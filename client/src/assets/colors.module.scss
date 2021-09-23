@@ -1,13 +1,17 @@
 // re-used colors of the project
-$blueLight: #3C5E9F;
-$blueDark: #2A467B;
+$blueLight: #1E448C;
+$blueDark: #162E5D;
 $yellow: #FFE7AB;
 $white: #C7D3FF;
 $blueText: #001447;
+$pink: #FFA2F3;
+$cyan: #88F1FF;
 
 // to use them outside of scss  files
 :export {
   developer: $white;
   designer: $yellow;
   bluetext: $blueText;
+  actionDev: $cyan;
+  actionDes: $pink;
 }

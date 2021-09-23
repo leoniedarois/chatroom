@@ -5,49 +5,79 @@
   position: fixed;
   background: $blueDark;
   display: flex;
+  z-index: 9;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  .background {
+    position: absolute;
+    height: 65vh;
+    width: 100vw;
+    background: linear-gradient(0deg, rgba(22,46,93,1) 45%, rgba(30,68,140,1) 100%);
+    bottom: 0;
+  }
 }
 
 .wrapper {
   display: flex;
 }
 
+.role {
+  opacity: 0;
+  text-transform: uppercase;
+  font-size: 33px;
+  font-weight: bold;
+  color: $blueDark;
+  writing-mode: vertical-rl;
+  text-orientation: sideways;
+  position: absolute;
+  z-index: 10;
+  top: 45px;
+  margin: 0;
+}
+
+.leftRole {
+  transform: rotate(180deg);
+  left: 10px;
+}
+
+.rightRole {
+  transform: rotate(0deg);
+  right: 10px;
+}
+
 .wrapperRole {
+  cursor: pointer;
   position: relative;
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 1;
+    transition-duration: 200ms;
+    .devChoice, .desChoice {
+      width: 180px;
+      height: 45vh;
+      transition-duration: 200ms;
+    }
+    .role {
+      opacity: 1;
+      transition-duration: 200ms;
+    }
+  }
 }
 
-.input {
-  padding: 20px;
-  background: none;
-  color: #ffffff !important;
-  border: 2px solid #ffffff !important;
-  border-radius: 15px;
-  margin-top: 10vh;
-
-}
-
-.devChoice {
-  width: 180px;
-  height: 45vh;
-  background: $white;
-  border-radius: 100px;
-  position: relative;
-  margin-left: 13vw;
-}
-
-.desChoice {
-  width: 180px;
-  height: 45vh;
-  background: $yellow;
-  border-radius: 100px;
-  position: relative;
-  margin-right: 13vw;
-}
-
-.hide {
-  display: none;
+.isActive {
+  opacity: 1 !important;
+  .devChoice, .desChoice {
+    width: 180px;
+    height: 45vh;
+    transition-duration: 200ms;
+  }
+  .role {
+    opacity: 1;
+    transition-duration: 200ms;
+  }
 }
 
 .image {
@@ -58,6 +88,89 @@
   left: 10%;
 }
 
+.input {
+  padding: 20px;
+  background: none;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+  border-radius: 15px;
+  margin-top: 10vh;
+  z-index: 10;
+  width: 12vw;
+  text-align: center;
+  font-size: 15px;
+  &:focus {
+    background: rgba(255,255,255,0.46);
+    outline: none;
+  }
+}
+
+.logo {
+  z-index: 50;
+  width: 100px;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}
+
+.bottomDecoration {
+  position: absolute;
+  z-index: 10;
+  right: 10vw;
+  bottom: 0;
+}
+
+.leftDecoration {
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  bottom: 10vh;
+}
+
+.blueBloc {
+  width: 60px;
+  height: 13px;
+  border-radius: 6px;
+  background: $white;
+  opacity: 80%;
+  position: absolute;
+  bottom: 10px;
+  left: -10px;
+}
+
+.yellowBloc {
+  width: 45px;
+  height: 13px;
+  border-radius: 6px;
+  background: $yellow;
+  opacity: 80%;
+  position: absolute;
+  top: 28px;
+  right: 15px;
+}
+
+.devChoice {
+  width: 160px;
+  height: 40vh;
+  background: $white;
+  border-radius: 100px;
+  position: relative;
+  margin-left: 13vw;
+}
+
+.desChoice {
+  width: 160px;
+  height: 40vh;
+  background: $yellow;
+  border-radius: 100px;
+  position: relative;
+  margin-right: 13vw;
+}
+
+.hide {
+  display: none;
+}
+
 // move to commun
 .changeScale {
   transform: scaleX(-1);
@@ -65,3 +178,11 @@
   right: 10% !important;
   left: auto !important;
 }
+
+.enterButton {
+  cursor: pointer;
+  z-index: 10;
+  margin-top: 2vh;
+  height: 15vh;
+}
+

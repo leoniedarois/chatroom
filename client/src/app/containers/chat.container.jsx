@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import MessagesList from '../components/chat-components/messages-list/messages-list.component';
 import MessageInput from '../components/chat-components/message-input.component';
+import styles from './containers.module.scss';
 
 const Chat = ({socket}) => {
   const [messages, setMessages] = useState([]);

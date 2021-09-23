@@ -1,0 +1,16 @@
+.wrapper {
+  display: flex;
+  height: 100vh;
+  position: relative;
+}
+
+.blur {
+  position: absolute;
+  z-index: 8;
+  top: 0;
+  height: 25vh;
+  width: 67vw;
+  background: rgba(255,255,255, 0.002);
+  backdrop-filter: blur(3px);
+  border-bottom: 1px solid rgba(255,255,255, 0.1) !important;
+}

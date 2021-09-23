@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
-import {getFromLocalStorage} from '../../../utils/storage';
+import {getFromLocalStorage} from '../../../../utils/storage';
+import styles from './users-list.module.scss';
 
 const UsersList = ({socket}) => {
   const [connectedUsers, setConnectedUsers] = useState([]);
@@ -30,6 +31,8 @@ const UsersList = ({socket}) => {
       });
     }
 
+    console.log(username, username.username);
+
     socket.on("userConnection", userConnectedListener);
     socket.on("updateUsername", updateUsername);
     socket.on("users", usersListener);
@@ -43,14 +46,15 @@ const UsersList = ({socket}) => {
   }, [socket]);
 
   return (
-    <div>
+    <div className={styles.userList}>
       {
         username.username !== "" && <h2>{username.username}</h2>
       }
+      {connectedUsers && <p className={styles.title}>En ligne</p>}
       {connectedUsers
         .sort((a, b) => a.name - b.name)
         .map((user) => (
-          <div key={user.id}><span>{user.name}</span><br/></div>
+          <div className={styles.user} key={user.id}><span>{user.name}</span><br/></div>
         ))}
     </div>
   )
