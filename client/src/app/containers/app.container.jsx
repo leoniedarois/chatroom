@@ -11,7 +11,7 @@ import styles from './containers.module.scss';
 const App = () => {
   const [socket, setSocket] = useState(null);
   const [theme, setTheme] = useState(developerTheme);
-  const [username, setUsername] = useState("");
+  const [connectedUser, setConnectedUser] = useState({id: "", name: ""});
 
   useEffect(() => {
     //  -> use local server if custom config is needed
@@ -27,12 +27,12 @@ const App = () => {
         <ThemeProvider theme={theme}>
           <>
             <GlobalStyles/>
-            <ConnexionModal socket={socket} setTheme={setTheme} theme={theme}/>
+            <ConnexionModal socket={socket} setTheme={setTheme} theme={theme} currentUser={connectedUser} setCurrentUser={setConnectedUser}/>
             {socket ? (
               <div className={styles.wrapper}>
                 <div className={styles.blur}/>
-                <Chat socket={socket}/>
-                <UsersList socket={socket}/>
+                <Chat socket={socket} currentUser={connectedUser}/>
+                <UsersList socket={socket} currentUser={connectedUser}/>
               </div>
             ) : (
               <div>You are not connected :( -> please try again</div>

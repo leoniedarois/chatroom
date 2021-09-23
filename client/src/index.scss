@@ -16,6 +16,35 @@ code {
 ::placeholder {
   color: white !important;
   font-size: 15px;
-  text-align: center;
   opacity: 46%;
 }
+
+input {
+  font-size: 15px;
+  padding: 20px;
+  background: none;
+  color: #ffffff !important;
+  &:focus {
+    background: rgba(255,255,255,0.46);
+    outline: none;
+  }
+}
+
+// Scrollbar
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+//::-webkit-scrollbar-thumb {
+//  background: ${({theme}) => theme.actionColor};
+//}
+//
+//::-webkit-scrollbar {
+//  width: 10px;
+//}
+//::-webkit-scrollbar-thumb:hover {
+//  background: ${({theme}) => theme.actionColor};
+//}

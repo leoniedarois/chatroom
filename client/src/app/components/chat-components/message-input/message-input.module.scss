@@ -1,0 +1,22 @@
+.input {
+  background: rgba(255,255,255,0.22);
+  border-radius: 25px;
+  padding: 10px;
+  width: 53vw;
+  z-index: 4;
+}
+
+.sendBar {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  margin-left: 7vw;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonSize {
+  width: 70px;
+  margin-left: 20px;
+  cursor: pointer;
+}

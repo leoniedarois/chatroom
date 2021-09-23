@@ -1,6 +1,6 @@
 import moment from 'moment';
 import styles from './messages-list.module.scss';
-import React, {useEffect, useRef} from "react";
+import {useEffect, useRef} from 'react';
 
 const MessagesList = ({messages, socket}) => {
   const messageEndRef = useRef(null);

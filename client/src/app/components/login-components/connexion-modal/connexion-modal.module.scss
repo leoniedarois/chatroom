@@ -89,19 +89,19 @@
 }
 
 .input {
-  padding: 20px;
-  background: none;
-  color: #ffffff !important;
   border: 2px solid #ffffff !important;
-  border-radius: 15px;
   margin-top: 10vh;
   z-index: 10;
   width: 12vw;
   text-align: center;
-  font-size: 15px;
-  &:focus {
-    background: rgba(255,255,255,0.46);
-    outline: none;
+  border-radius: 15px;
+  padding: 20px;
+
+  ::placeholder {
+    color: white !important;
+    font-size: 15px;
+    text-align: center;
+    opacity: 46%;
   }
 }
 
@@ -117,7 +117,7 @@
   position: absolute;
   z-index: 10;
   right: 10vw;
-  bottom: 0;
+  bottom: -5px;
 }
 
 .leftDecoration {

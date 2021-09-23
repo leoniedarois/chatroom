@@ -10,6 +10,7 @@ export const GlobalStyles = createGlobalStyle`
   }
   
   .button {
+    
     path {
       stroke: ${({theme}) => theme.actionColor};
     }
@@ -56,7 +57,7 @@ export const GlobalStyles = createGlobalStyle`
   }
   
   .decoration {
-    circle {
+    .circleColor {
       fill: ${({theme}) => theme.actionColor};
     }
   }
@@ -69,5 +70,9 @@ export const GlobalStyles = createGlobalStyle`
     circle {
       fill: ${({theme}) => theme.actionColor};
     }
+  }
+  
+  .messageInput {
+    border: 2px solid ${({theme}) => theme.actionColor};
   }
 `;

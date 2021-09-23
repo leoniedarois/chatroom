@@ -1,5 +1,5 @@
 import {designerTheme, developerTheme} from '../../../../assets/themes';
-import {getFromLocalStorage, setToLocalStorage} from '../../../../utils/storage';
+import {setToLocalStorage} from '../../../../utils/storage';
 import styles from '../connexion-modal/connexion-modal.module.scss';
 import RobotDes from '../../../../assets/img/robotDes.png';
 import RobotDev from '../../../../assets/img/robotDev.png';
@@ -10,12 +10,12 @@ import {useState} from 'react';
 // define roles :)
 const ROLES = {DEVELOPER: "developer", DESIGNER: "designer"};
 
-const ConnexionModal = ({socket, setTheme, theme}) => {
+const ConnexionModal = ({socket, setTheme, theme, setCurrentUser, currentUser}) => {
   const [username, setUsername] = useState("");
+  const [role, setRole] = useState("developer");
   const [hideModal, setHideModal] = useState(false);
   const [isActiveDev, setIsActiveDev] = useState(true);
   const [isActiveDes, setIsActiveDes] = useState(false);
-  const [connectedUser, setConnectedUser] = useState({id: "", username: "", role: ""});
 
   const modalToggle = classNames({
     [styles.modal]: true,
@@ -35,10 +35,8 @@ const ConnexionModal = ({socket, setTheme, theme}) => {
   const submitForm = () => {
     if (username !== "") {
       socket.emit("setUsername", username);
-      setUsername("");
-      setConnectedUser({id: socket.id, username, role: getFromLocalStorage('role')});
-      setToLocalStorage('connectedUser', connectedUser);
-      console.log(username)
+      socket.emit("setRole", role);
+      setCurrentUser({...currentUser, id: socket.id, name: username, role: role});
       socket.emit("getUsers");
     }
   };
@@ -56,11 +54,13 @@ const ConnexionModal = ({socket, setTheme, theme}) => {
       setHideModal(true);
     }
   }
+
   const changeUsername = (e) => setUsername(e.currentTarget.value);
 
   const addDeveloperRole = () => {
     setToLocalStorage('role', ROLES.DEVELOPER);
     setTheme(developerTheme);
+    setRole('developer');
     if(isActiveDes) {
       setIsActiveDes(false);
       setIsActiveDev(true);
@@ -70,6 +70,7 @@ const ConnexionModal = ({socket, setTheme, theme}) => {
   const addDesignerRole = () => {
     setToLocalStorage('role', ROLES.DESIGNER);
     setTheme(designerTheme);
+    setRole('designer');
     if(isActiveDev) {
       setIsActiveDev(false);
       setIsActiveDes(true);
@@ -85,13 +86,13 @@ const ConnexionModal = ({socket, setTheme, theme}) => {
                xmlns="http://www.w3.org/2000/svg">
             <circle cx="102.138" cy="93.0391" r="14.8885" stroke="white" strokeWidth="4.70164"/>
             <line x1="-2.50057" y1="73.8751" x2="88.3978" y2="91.1144" stroke="white" strokeWidth="3.91803"/>
-            <circle cx="215.761" cy="76.5831" r="17.2393" fill="#88F1FF"/>
-            <circle cx="188.239" cy="17.2393" r="17.2393" fill="#88F1FF"/>
+            <circle className={'circleColor'} cx="215.761" cy="76.5831" r="17.2393" fill="#88F1FF"/>
+            <circle className={'circleColor'} cx="188.239" cy="17.2393" r="17.2393" fill="#88F1FF"/>
             <line x1="-5.60871" y1="32.35" x2="198.881" y2="74.0345" stroke="white" strokeWidth="3.91803"/>
             <line x1="129.181" y1="60.1216" x2="174.63" y2="26.4265" stroke="white" strokeWidth="3.91803"/>
             <path d="M-2.8656 104.793L82.4059 121.06L88.7933 159.334L149.154 168.265" stroke="white"
                   strokeWidth="3.91803"/>
-            <circle cx="164.826" cy="169.833" r="17.2393" fill="#88F1FF"/>
+            <circle className={'circleColor'} cx="164.826" cy="169.833" r="17.2393" fill="#88F1FF"/>
           </svg>
         </div>
         <div className={styles.bottomDecoration}>
@@ -101,13 +102,13 @@ const ConnexionModal = ({socket, setTheme, theme}) => {
                     strokeWidth="3.9933"/>
             <circle cx="102.618" cy="125.591" r="12.6454" transform="rotate(-102.281 102.618 125.591)" stroke="white"
                     strokeWidth="3.9933"/>
-            <circle cx="68.4341" cy="34.2679" r="14.6421" transform="rotate(-102.281 68.4341 34.2679)" fill="#FFA2F3"/>
+            <circle className={'circleColor'} cx="68.4341" cy="34.2679" r="14.6421" transform="rotate(-102.281 68.4341 34.2679)" fill="#FFA2F3"/>
             <line x1="105.618" y1="215.893" x2="103.503" y2="137.342" stroke="white" strokeWidth="3.32775"/>
             <line x1="71.7169" y1="225.975" x2="69.3676" y2="48.7369" stroke="white" strokeWidth="3.32775"/>
             <line x1="70.4139" y1="109.094" x2="34.2393" y2="77.4632" stroke="white" strokeWidth="3.32775"/>
             <path d="M131.343 210.61L129.438 136.904L160.048 124.689L156.555 72.9814" stroke="white"
                   strokeWidth="3.32775"/>
-            <circle cx="23.4214" cy="71.4867" r="14.6421" transform="rotate(-102.281 23.4214 71.4867)" fill="#FFA2F3"/>
+            <circle className={'circleColor'} cx="23.4214" cy="71.4867" r="14.6421" transform="rotate(-102.281 23.4214 71.4867)" fill="#FFA2F3"/>
           </svg>
         </div>
         <div className={styles.background}/>
@@ -127,8 +128,7 @@ const ConnexionModal = ({socket, setTheme, theme}) => {
         </div>
       </div>
       <input className={styles.input} autoFocus value={username} placeholder="Define your pseudonyme"
-             onChange={changeUsername}
-             onKeyDown={handleKeyDown}/>
+             onChange={changeUsername} onKeyDown={handleKeyDown}/>
 
       <div className={styles.enterButton} onClick={clickSendForm}>
         <svg className={'button'} width="125" height="125" viewBox="0 0 125 125" fill="none"

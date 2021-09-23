@@ -1,18 +1,25 @@
 import {useEffect, useState} from 'react';
-import {getFromLocalStorage} from '../../../../utils/storage';
 import styles from './users-list.module.scss';
+import DesAvatar from '../../../../assets/img/avatarDesFull.png';
+import DevAvatar from '../../../../assets/img/avatarDevFull.png';
 
-const UsersList = ({socket}) => {
+const UsersList = ({socket, currentUser}) => {
   const [connectedUsers, setConnectedUsers] = useState([]);
-  const username = getFromLocalStorage('connectedUser');
 
   useEffect(() => {
     const usersListener = (users) => {
-      setConnectedUsers(users)
+      const cleanUsers = users.map((user) => {
+        return {
+          ...user,
+          role: user.role !== ('developer' || 'designer') && 'developer'
+        }
+      })
+      setConnectedUsers(cleanUsers);
     };
 
     const userConnectedListener = (user) => {
-      setConnectedUsers((prevUsers) => [...prevUsers, user])
+      const cleanUser = {...user, role: user.role !== ('developer' || 'designer') && 'developer'};
+      setConnectedUsers((prevUsers) => [...prevUsers, cleanUser]);
     }
 
     const updateUsername = (newUser) => {
@@ -31,8 +38,6 @@ const UsersList = ({socket}) => {
       });
     }
 
-    console.log(username, username.username);
-
     socket.on("userConnection", userConnectedListener);
     socket.on("updateUsername", updateUsername);
     socket.on("users", usersListener);
@@ -48,13 +53,23 @@ const UsersList = ({socket}) => {
   return (
     <div className={styles.userList}>
       {
-        username.username !== "" && <h2>{username.username}</h2>
+        currentUser.name !== "" &&
+        <div className={styles.avatar}>
+          <h2 className={styles.userName}>{currentUser.name}</h2>
+          <div>
+            {currentUser.role === "developer" ? <img src={DevAvatar} alt="avatar"/> : <img src={DesAvatar} alt="avatar"/>}
+          </div>
+        </div>
       }
       {connectedUsers && <p className={styles.title}>En ligne</p>}
       {connectedUsers
         .sort((a, b) => a.name - b.name)
         .map((user) => (
-          <div className={styles.user} key={user.id}><span>{user.name}</span><br/></div>
+          <div className={styles.avatar} key={user.id}>
+            <span className={styles.user}>{user.name}</span>
+            {user.role === "developer" ? <img src={DevAvatar} alt="avatar"/> : <img src={DesAvatar} alt="avatar"/>}
+            <br/>
+          </div>
         ))}
     </div>
   )

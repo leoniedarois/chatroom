@@ -1,9 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import MessagesList from '../components/chat-components/messages-list/messages-list.component';
-import MessageInput from '../components/chat-components/message-input.component';
+import MessageInput from '../components/chat-components/message-input/message-input.component';
 import styles from './containers.module.scss';
+import RobotDes from '../../assets/img/robotDes.png';
+import RobotDev from '../../assets/img/robotDev.png';
 
-const Chat = ({socket}) => {
+const Chat = ({socket, currentUser}) => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
@@ -38,10 +40,14 @@ const Chat = ({socket}) => {
     })
   }
   return (
-    <>
+    <div className={styles.chat}>
+      <div className={styles.decoration}>
+        {currentUser.role === "developer" ? <img className={styles.image} src={RobotDev} alt="robot developer avatar"/> :
+          <img  className={styles.image} src={RobotDes} alt="robot designer avatar"/>}
+      </div>
       <MessagesList messages={messages} socket={socket}/>
       <MessageInput onRead={onRead} socket={socket}/>
-    </>
+    </div>
   );
 };
 

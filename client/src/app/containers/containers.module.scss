@@ -14,3 +14,20 @@
   backdrop-filter: blur(3px);
   border-bottom: 1px solid rgba(255,255,255, 0.1) !important;
 }
+
+.chat {
+  position: relative;
+  overflow-y: scroll;
+  width: 70vw;
+  margin: 40px 0 100px 0;
+}
+
+.decoration {
+  position: fixed;
+  bottom: -70px;
+  right: 15vw;
+
+  .image {
+    width: 20vw;
+  }
+}
