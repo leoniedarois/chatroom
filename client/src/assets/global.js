@@ -10,7 +10,6 @@ export const GlobalStyles = createGlobalStyle`
   }
   
   .button {
-    
     path {
       stroke: ${({theme}) => theme.actionColor};
     }

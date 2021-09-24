@@ -1,4 +1,5 @@
 @import '/src/assets/colors.module';
+
 .modal {
   width: 100vw;
   height: 100vh;
@@ -14,7 +15,7 @@
     position: absolute;
     height: 65vh;
     width: 100vw;
-    background: linear-gradient(0deg, rgba(22,46,93,1) 45%, rgba(30,68,140,1) 100%);
+    background: linear-gradient(0deg, rgba(22, 46, 93, 1) 45%, rgba(30, 68, 140, 1) 100%);
     bottom: 0;
   }
 }
@@ -55,11 +56,13 @@
   &:hover {
     opacity: 1;
     transition-duration: 200ms;
+
     .devChoice, .desChoice {
       width: 180px;
       height: 45vh;
       transition-duration: 200ms;
     }
+
     .role {
       opacity: 1;
       transition-duration: 200ms;
@@ -69,11 +72,13 @@
 
 .isActive {
   opacity: 1 !important;
+
   .devChoice, .desChoice {
     width: 180px;
     height: 45vh;
     transition-duration: 200ms;
   }
+
   .role {
     opacity: 1;
     transition-duration: 200ms;
@@ -171,7 +176,6 @@
   display: none;
 }
 
-// move to commun
 .changeScale {
   transform: scaleX(-1);
   bottom: -20% !important;
@@ -184,6 +188,19 @@
   z-index: 10;
   margin-top: 2vh;
   height: 15vh;
+
+  // animate
+  svg {
+    animation: rotate 6s linear infinite;
+    &:hover {
+      animation-play-state: paused;
+    }
+  }
+
+  @keyframes rotate {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+  }
 }
 
 .blocked {

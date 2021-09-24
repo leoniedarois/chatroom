@@ -81,7 +81,7 @@ const ConnexionModal = ({socket, setTheme, theme, setCurrentUser, currentUser}) 
         <div className={styles.leftDecoration}>
           <svg className={'decoration'} width="233" height="188" viewBox="0 0 233 188" fill="none"
                xmlns="http://www.w3.org/2000/svg">
-            <circle cx="102.138" cy="93.0391" r="14.8885" stroke="white" strokeWidth="4.70164"/>
+            <circle className={'empty'} cx="102.138" cy="93.0391" r="14.8885" stroke="white" strokeWidth="4.70164"/>
             <line x1="-2.50057" y1="73.8751" x2="88.3978" y2="91.1144" stroke="white" strokeWidth="3.91803"/>
             <circle className={'circleColor'} cx="215.761" cy="76.5831" r="17.2393" fill="#88F1FF"/>
             <circle className={'circleColor'} cx="188.239" cy="17.2393" r="17.2393" fill="#88F1FF"/>

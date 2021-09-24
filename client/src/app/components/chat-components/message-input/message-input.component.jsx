@@ -47,7 +47,7 @@ const MessageInput = ({socket, onRead}) => {
   return (
     <div className={styles.sendBar}>
       <div>
-        <input className={inputClass} autoFocus value={messageContent} placeholder="Type something great" onChange={changeMessage}
+        <input className={inputClass} autoFocus value={messageContent} placeholder="Send a message in the tchat" onChange={changeMessage}
                onKeyDown={handleKeyDown} onFocus={removeNotifications}/>
       </div>
       <div onClick={clickSendForm}>

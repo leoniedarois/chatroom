@@ -39,10 +39,8 @@ const MessagesList = ({messages, socket}) => {
         .sort((a, b) => a.time - b.time)
         .map((message) => {
           const isActualUser = socket.id === message.user.id;
-          // TODO FIX BUG AND CHANGE ORDER
-          const otherMessages = message.user.role === ROLES.DEVELOPER ? `${styles.message} ${styles.desMessages}` : `${styles.message} ${styles.devMessages}`;
-          const otherUsername = message.user.role === ROLES.DEVELOPER ? desUsername : devUsername;
-          //console.log(message.user.role);
+          const otherMessages = message.user.role === ROLES.DESIGNER ? `${styles.message} ${styles.desMessages}` : `${styles.message} ${styles.devMessages}`;
+          const otherUsername = message.user.role === ROLES.DESIGNER ? desUsername : devUsername;
           return (
             <div key={message.id}>
               {message.value !== "" &&
@@ -55,7 +53,7 @@ const MessagesList = ({messages, socket}) => {
                   <path d="M89.2738 37.1345L-0.999997 37.1345" stroke="#CBD9FA" strokeWidth="4.41282"/>
                 </svg>
                 }
-                <div className={styles.wrapper} onClick={() => console.log(message.user.role === ROLES.DEVELOPER, ROLES.DEVELOPER)}>
+                <div className={styles.wrapper}>
                   <div className={isActualUser ? currentUsername : otherUsername}>
                     <span>{message.user.name}</span>
                     <span className={styles.time}>{moment(message.time).format('HH:mm')}</span>
