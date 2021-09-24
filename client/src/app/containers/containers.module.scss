@@ -13,6 +13,9 @@
   background: rgba(255,255,255, 0.002);
   backdrop-filter: blur(3px);
   border-bottom: 1px solid rgba(255,255,255, 0.1) !important;
+  @media (max-width: 768px) {
+    width: 100vw;
+  }
 }
 
 .chat {
@@ -20,6 +23,9 @@
   overflow-y: scroll;
   width: 70vw;
   margin: 40px 0 100px 0;
+  @media (max-width: 768px) {
+    width: 100vw;
+  }
 }
 
 .decoration {
@@ -30,5 +36,9 @@
 
   .image {
     width: 20vw;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
   }
 }

@@ -9,6 +9,9 @@
   margin: 40px;
   font-weight: 200;
   overflow-y: scroll;
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 .title {

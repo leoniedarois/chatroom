@@ -58,9 +58,14 @@
     transition-duration: 200ms;
 
     .devChoice, .desChoice {
-      width: 180px;
+      width: 12vw;
       height: 45vh;
       transition-duration: 200ms;
+
+      @media (max-width: 768px) {
+        height: 40vw;
+        width: 12vh;
+      }
     }
 
     .role {
@@ -74,14 +79,22 @@
   opacity: 1 !important;
 
   .devChoice, .desChoice {
-    width: 180px;
+    width: 12vw;
     height: 45vh;
     transition-duration: 200ms;
+
+    @media (max-width: 768px) {
+      height: 40vw;
+      width: 12vh;
+    }
   }
 
   .role {
     opacity: 1;
     transition-duration: 200ms;
+    @media (max-width: 768px) {
+      font-size: 20px;
+    }
   }
 }
 
@@ -91,6 +104,9 @@
   bottom: -15%;
   right: 0;
   left: 10%;
+  @media (max-width: 768px) {
+    width: 35vw;
+  }
 }
 
 .input {
@@ -108,6 +124,10 @@
     text-align: center;
     opacity: 46%;
   }
+
+  @media (max-width: 768px) {
+    width: 50vw;
+  }
 }
 
 .logo {
@@ -123,6 +143,9 @@
   z-index: 10;
   right: 10vw;
   bottom: -5px;
+  @media (max-width: 768px) {
+   display: none;
+  }
 }
 
 .leftDecoration {
@@ -130,6 +153,9 @@
   z-index: 10;
   left: 0;
   bottom: 10vh;
+  @media (max-width: 768px) {
+   display: none;
+  }
 }
 
 .blueBloc {
@@ -155,21 +181,29 @@
 }
 
 .devChoice {
-  width: 160px;
+  width: 12vw;
   height: 40vh;
   background: $white;
   border-radius: 100px;
   position: relative;
   margin-left: 13vw;
+  @media (max-width: 768px) {
+    height: 30vw;
+    width: 10vh;
+  }
 }
 
 .desChoice {
-  width: 160px;
+  width: 12vw;
   height: 40vh;
   background: $yellow;
   border-radius: 100px;
   position: relative;
   margin-right: 13vw;
+  @media (max-width: 768px) {
+    height: 30vw;
+    width: 10vh;
+  }
 }
 
 .hide {
@@ -205,4 +239,7 @@
 
 .blocked {
   width: 25vw;
+  @media (max-width: 768px) {
+    width: 20vw;
+  }
 }
